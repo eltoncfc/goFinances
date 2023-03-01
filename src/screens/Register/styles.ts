@@ -28,3 +28,8 @@ export const Form = styled.View`
 `;
 
 export const Fields = styled.View``;
+export const TransactionsTypes = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+`;
