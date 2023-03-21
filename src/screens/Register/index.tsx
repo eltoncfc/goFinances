@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-native";
+import { useForm } from "react-hook-form";
+import { InputForm } from "../../componentes/Forms/InputForm";
 import {
   Container,
   Header,
@@ -8,11 +10,15 @@ import {
   Fields,
   TransactionsTypes,
 } from "./styles";
-import { Input } from "../../componentes/Forms/Input";
 import { Button } from "../../componentes/Forms/Button";
 import { TransactionTypeButton } from "../../componentes/Forms/TransactionTypeButton";
 import { CategorySelectButton } from "../../componentes/Forms/CategorySelectButton";
 import { CategorySelet as CategorySelect } from "../CategorySelect";
+
+interface FormData {
+  name: string;
+  amount: string;
+}
 export function Register() {
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, SetCategoryOpen] = useState(false);
@@ -32,6 +38,19 @@ export function Register() {
   function handleCloseSelectCategoryModal() {
     SetCategoryOpen(false);
   }
+
+  const { control, handleSubmit } = useForm();
+
+  function handleRegister(form: FormData) {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      transactionType,
+      category: category.key,
+    };
+    console.log(data);
+  }
+
   return (
     <Container>
       <Header>
@@ -40,8 +59,8 @@ export function Register() {
 
       <Form>
         <Fields>
-          <Input placeholder="nome" />
-          <Input placeholder="Preço" />
+          <InputForm name="name" control={control} placeholder="Nome" />
+          <InputForm name="amount" control={control} placeholder="Preço" />
           <TransactionsTypes>
             <TransactionTypeButton
               type="up"
@@ -61,7 +80,7 @@ export function Register() {
             onPress={handleOpenSelectCategory}
           />
         </Fields>
-        <Button title="Enviar" />
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
       </Form>
       <Modal visible={categoryModalOpen}>
         <CategorySelect
