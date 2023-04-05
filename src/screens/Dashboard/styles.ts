@@ -7,6 +7,7 @@ import {
   getStatusBarHeight,
 } from "react-native-iphone-x-helper";
 
+import { BorderlessButton } from "react-native-gesture-handler";
 import { DatalistProps } from ".";
 export const Container = styled.View`
   flex: 1;
@@ -62,6 +63,7 @@ export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${RFValue(24)}px;
 `;
+export const LogoutButton = styled(BorderlessButton)``;
 
 export const HighlightCards = styled.ScrollView.attrs({
   horizontal: true,

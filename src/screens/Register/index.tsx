@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Keyboard, Modal, Alert, TouchableWithoutFeedback } from "react-native";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useForm } from "react-hook-form";
 import { InputForm } from "../../componentes/Forms/InputForm";
@@ -113,8 +114,15 @@ export function Register() {
               onPress={handleOpenSelectCategory}
             />
           </Fields>
-          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
+          <GestureHandlerRootView
+            style={{
+              flex: 1,
+            }}
+          >
+            <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
+          </GestureHandlerRootView>
         </Form>
+
         <Modal visible={categoryModalOpen}>
           <CategorySelect
             category={category}

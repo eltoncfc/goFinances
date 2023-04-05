@@ -1,7 +1,7 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   useFonts,
   Poppins_400Regular,
@@ -10,6 +10,8 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import theme from "./src/global/styles/theme";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRoutes } from "./src/routes/app.routes";
 // import Dashboard from "./src/screens/Dashboard";
 import { Register } from "./src/screens/Register";
 // import { CategorySelet } from "./src/screens/CategorySelect";
@@ -25,7 +27,16 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.background,
+        }}
+      >
+        <NavigationContainer>
+          <AppRoutes />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
