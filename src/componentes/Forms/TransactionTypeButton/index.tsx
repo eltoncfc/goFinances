@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacityProps } from "react-native";
 import { Container, Icon, Title } from "./styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const icons = {
   up: "arrow-up-circle",
